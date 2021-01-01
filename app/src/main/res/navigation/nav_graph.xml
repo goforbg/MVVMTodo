@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tasksFragment">
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.androar.mvvmtodo.ui.tasks.TasksFragment"
+        android:label="tasks_fragment"
+        tools:layout="@layout/tasks_fragment" >
+        <action
+            android:id="@+id/action_tasksFragment_to_addEditTasksFragment"
+            app:destination="@id/addEditTasksFragment" />    </fragment>
+
+
+    <fragment
+        android:id="@+id/addEditTasksFragment"
+        android:name="com.androar.mvvmtodo.ui.tasks.AddEditTasksFragment"
+        android:label="add_edit_tasks_fragment"
+        tools:layout="@layout/add_edit_tasks_fragment" >
+        <argument
+            android:name="Task"
+            app:argType="com.androar.mvvmtodo.data.Task" />
+    </fragment>
+</navigation>
