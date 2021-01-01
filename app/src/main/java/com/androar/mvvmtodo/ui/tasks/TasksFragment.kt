@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.androar.mvvmtodo.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TasksFragment : Fragment(R.layout.tasks_fragment) {
 
     companion object {
