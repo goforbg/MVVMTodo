@@ -1,13 +1,11 @@
 package com.androar.mvvmtodo.ui.tasks
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.androar.mvvmtodo.R
+import com.androar.mvvmtodo.databinding.TasksFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,5 +18,23 @@ class TasksFragment : Fragment(R.layout.tasks_fragment) {
 
     private val viewModel by viewModels<TasksViewModel>()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = TasksFragmentBinding.bind(view)
+
+        val tasksAdapter = TasksAdapter()
+
+        binding.apply {
+            recyclerViewTasks.apply {
+                setHasFixedSize(true)
+                adapter = tasksAdapter
+            }
+        }
+
+        viewModel.tasks.observe(viewLifecycleOwner) {
+            tasksAdapter.submitList(it)
+        }
+
+    }
 
 }
